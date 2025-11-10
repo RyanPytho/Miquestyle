@@ -1,10 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// IMPORTANTE: Carregar .env ANTES de importar outros módulos que usam process.env
+// Carregar do diretório backend (um nível acima de src)
+dotenv.config({ path: join(__dirname, '..', '.env') });
+
+console.log('[SERVER] DATABASE_URL carregada:', !!process.env.DATABASE_URL);
+
 import { initDb } from './db.js';
 import { register, login, me, authMiddleware, forgotPassword, resetPassword } from './auth.js';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
