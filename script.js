@@ -58,8 +58,12 @@ const profileModal = document.getElementById('profileModal');
 // WhatsApp Configuration
 const WHATSAPP_NUMBER = "41995136233";
 const WHATSAPP_MESSAGE_PREFIX = "Olá! Gostaria de comprar os seguintes produtos da Miquestyle:\n\n";
-// Detecta API automaticamente (mesma rede). Ex.: http(s)://HOST:4000
-const API_BASE = `${location.protocol}//${location.hostname}:4000`;
+// Detecta API automaticamente
+// Em produção: usa o mesmo domínio (/api)
+// Em desenvolvimento: usa localhost:4000
+const API_BASE = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+    ? `${location.protocol}//${location.hostname}:4000`
+    : `${location.origin}/api`;
 
 // Inicialização quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
@@ -693,7 +697,11 @@ async function handleLogin(e) {
         // Verificar se a resposta é JSON
         const contentType = res.headers.get('content-type');
         if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('API não está respondendo. Verifique se o servidor está rodando na porta 4000.');
+            const isProduction = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
+            const errorMsg = isProduction 
+                ? 'Erro ao conectar com o servidor. Tente novamente em alguns instantes.'
+                : 'API não está respondendo. Verifique se o servidor está rodando na porta 4000.';
+            throw new Error(errorMsg);
         }
         
         const data = await res.json();
@@ -707,8 +715,12 @@ async function handleLogin(e) {
     } catch (err) {
         let msg = err.message || 'Erro ao fazer login';
         if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-            msg = 'Não foi possível conectar à API. Verifique se o servidor está rodando na porta 4000.';
+            const isProduction = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
+            msg = isProduction 
+                ? 'Não foi possível conectar com o servidor. Verifique sua conexão e tente novamente.'
+                : 'Não foi possível conectar à API. Verifique se o servidor está rodando na porta 4000.';
         }
+        console.error('Login error:', err);
         showNotification(msg);
         if (errBox) { 
             errBox.textContent = msg; 
