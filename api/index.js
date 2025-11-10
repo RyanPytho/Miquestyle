@@ -1,9 +1,9 @@
 // Vercel serverless function - Roteador único para todas as rotas
 import dotenv from 'dotenv';
+dotenv.config();
+
 import { initDb } from '../backend/src/db.js';
 import { register, login, me, authMiddleware, forgotPassword, resetPassword } from '../backend/src/auth.js';
-
-dotenv.config();
 
 // Criar app Express mínimo
 import express from 'express';
@@ -11,6 +11,17 @@ const app = express();
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
 app.set('JWT_SECRET', JWT_SECRET);
 app.use(express.json());
+
+// CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
 
 // Healthcheck
 app.get('/health', async (_req, res) => {
@@ -57,15 +68,6 @@ export default async function handler(req, res) {
     } catch (error) {
       console.error('Database initialization error:', error);
     }
-  }
-  
-  // Aplicar CORS manualmente
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
   }
   
   // Passar para o Express
