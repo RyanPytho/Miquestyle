@@ -22,7 +22,15 @@ const ORIGIN = process.env.ORIGIN || '*';
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
 
 app.set('JWT_SECRET', JWT_SECRET);
-app.use(cors({ origin: ORIGIN === '*' ? true : ORIGIN, credentials: false }));
+
+// CORS mais permissivo para desenvolvimento
+app.use(cors({ 
+  origin: true, // Permite qualquer origem em desenvolvimento
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 app.use(authMiddleware);
 
