@@ -1,14 +1,8 @@
 // Health check endpoint
-import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import { initDb } from '../backend/src/db.js';
 
 dotenv.config();
-
-const app = express();
-app.use(cors());
-app.use(express.json());
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -17,7 +11,7 @@ export default async function handler(req, res) {
   
   try {
     await initDb();
-    res.json({ 
+    return res.json({ 
       ok: true, 
       timestamp: new Date().toISOString(),
       environment: process.env.VERCEL ? 'production' : 'development',
@@ -25,7 +19,6 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Health check error:', error);
-    res.status(500).json({ ok: false, error: error.message });
+    return res.status(500).json({ ok: false, error: error.message });
   }
 }
-
