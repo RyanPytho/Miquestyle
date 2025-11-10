@@ -58,5 +58,17 @@ let dbInitialized = false;
   }
 })();
 
-// Handler para Vercel - exporta o app Express diretamente
-export default app;
+// Handler para Vercel - precisa ser uma função que recebe req e res
+export default function handler(req, res) {
+  // Garantir que o banco está inicializado
+  if (!dbInitialized) {
+    initDb().then(() => {
+      dbInitialized = true;
+    }).catch(err => {
+      console.error('Database initialization error:', err);
+    });
+  }
+  
+  // Passar a requisição para o Express
+  return app(req, res);
+}
