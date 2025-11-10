@@ -725,15 +725,22 @@ async function handleLogin(e) {
     }
     
     try {
+        console.log('[AUTH] Fazendo requisição para:', `${API_BASE}/auth/login`);
         const res = await fetch(`${API_BASE}/auth/login`, { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify({ email, password }) 
         });
         
+        console.log('[AUTH] Resposta recebida:', res.status, res.statusText);
+        
         // Verificar se a resposta é JSON
         const contentType = res.headers.get('content-type');
+        console.log('[AUTH] Content-Type:', contentType);
+        
         if (!contentType || !contentType.includes('application/json')) {
+            const text = await res.text();
+            console.error('[AUTH] Resposta não é JSON:', text.substring(0, 200));
             const isProduction = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
             const errorMsg = isProduction 
                 ? 'Erro ao conectar com o servidor. Tente novamente em alguns instantes.'
@@ -742,7 +749,12 @@ async function handleLogin(e) {
         }
         
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Erro ao entrar');
+        console.log('[AUTH] Dados recebidos:', { hasUser: !!data.user, hasToken: !!data.token, error: data.error });
+        
+        if (!res.ok) {
+            console.error('[AUTH] Erro na resposta:', data);
+            throw new Error(data.error || `Erro ao entrar (${res.status})`);
+        }
         
         localStorage.setItem('miquestyleToken', data.token);
         localStorage.setItem('miquestyleUser', JSON.stringify(data.user));
@@ -750,14 +762,22 @@ async function handleLogin(e) {
         closeAuthModal();
         updateAuthState();
     } catch (err) {
+        console.error('[AUTH] Erro completo:', err);
         let msg = err.message || 'Erro ao fazer login';
+        
         if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
             const isProduction = location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
             msg = isProduction 
                 ? 'Não foi possível conectar com o servidor. Verifique sua conexão e tente novamente.'
                 : 'Não foi possível conectar à API. Verifique se o servidor está rodando na porta 4000.';
         }
-        console.error('Login error:', err);
+        
+        // Mensagem mais específica para erro 500
+        if (err.message.includes('500') || err.message.includes('interno')) {
+            msg = 'Erro no servidor. Verifique se as variáveis de ambiente estão configuradas no Vercel.';
+        }
+        
+        console.error('[AUTH] Exibindo erro:', msg);
         showNotification(msg);
         if (errBox) { 
             errBox.textContent = msg; 

@@ -68,16 +68,32 @@ let dbInitialized = false;
 
 // Handler para Vercel
 export default async function handler(req, res) {
+  // Log da requisição
+  console.log(`[VERCEL] ${req.method} ${req.url}`);
+  console.log('[VERCEL] DATABASE_URL configurada:', !!process.env.DATABASE_URL);
+  console.log('[VERCEL] JWT_SECRET configurado:', !!process.env.JWT_SECRET);
+  
   // Garantir que o banco está inicializado
   if (!dbInitialized) {
     try {
+      console.log('[VERCEL] Inicializando banco de dados...');
       await initDb();
       dbInitialized = true;
+      console.log('[VERCEL] Banco de dados inicializado com sucesso');
     } catch (error) {
-      console.error('Database initialization error:', error);
+      console.error('[VERCEL] Erro ao inicializar banco:', error);
+      console.error('[VERCEL] Stack:', error.stack);
+      // Não retornar erro aqui, deixar o Express tratar
     }
   }
   
-  // Passar para o Express
-  return app(req, res);
+  // Passar para o Express com tratamento de erro
+  try {
+    return app(req, res);
+  } catch (error) {
+    console.error('[VERCEL] Erro no handler:', error);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Erro interno do servidor', details: error.message });
+    }
+  }
 }

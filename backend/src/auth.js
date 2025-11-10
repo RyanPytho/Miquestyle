@@ -33,32 +33,50 @@ export async function register(req, res) {
 
 export async function login(req, res) {
   try {
+    console.log('[AUTH] Login attempt:', { email: req.body.email });
+    
     const { email, password } = req.body;
     if (!email || !password) {
+      console.log('[AUTH] Campos faltando');
       return res.status(400).json({ error: 'Informe email e senha' });
     }
     
+    console.log('[AUTH] Buscando usuário no banco...');
     const result = await query(
       'SELECT * FROM users WHERE email = $1',
       [email.toLowerCase()]
     );
     
+    console.log('[AUTH] Usuário encontrado:', result.rows.length > 0);
+    
     if (result.rows.length === 0) {
+      console.log('[AUTH] Usuário não encontrado');
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
     
     const row = result.rows[0];
+    console.log('[AUTH] Verificando senha...');
     const ok = bcrypt.compareSync(password, row.password_hash);
     if (!ok) {
+      console.log('[AUTH] Senha incorreta');
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
     
+    const jwtSecret = req.app.get('JWT_SECRET');
+    if (!jwtSecret) {
+      console.error('[AUTH] JWT_SECRET não configurado!');
+      return res.status(500).json({ error: 'Erro de configuração do servidor' });
+    }
+    
     const user = { id: row.id, name: row.name, email: row.email };
-    const token = genToken(user, req.app.get('JWT_SECRET'));
+    console.log('[AUTH] Gerando token para usuário:', user.id);
+    const token = genToken(user, jwtSecret);
+    console.log('[AUTH] Login bem-sucedido');
     return res.json({ user, token });
   } catch (error) {
-    console.error('Login error:', error);
-    return res.status(500).json({ error: 'Erro no login' });
+    console.error('[AUTH] Erro no login:', error);
+    console.error('[AUTH] Stack:', error.stack);
+    return res.status(500).json({ error: 'Erro no login', details: error.message });
   }
 }
 
