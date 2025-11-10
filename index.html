@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miquestyle - Sneakers Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="promo-banner"></div>
+        <div class="header-main">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="/img/miqui.png" alt="Miquestyle" class="site-logo" />
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="cart-btn" id="cartBtn" title="Carrinho">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
+                        <button class="auth-btn" id="openAuthModal">Entrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-content">
+                    <h2>Os sneakers mais desejados do momento.</h2>
+                    <h3></h3>
+                    <p>Importados, exclusivos e feitos pra quem valoriza estilo.</p>
+                    <button class="cta-btn">Ver Lançamentos</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sneakers Premium">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nike Section -->
+    <section class="nike-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nike</h2>
+                <a href="#all-nike" class="view-all">Ver Todos</a>
+            </div>
+            <div class="products-grid" id="nikeProducts"></div>
+        </div>
+    </section>
+
+    <!-- Jordan Section -->
+    <section class="jordan-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jordan</h2>
+                <a href="#all-jordan" class="view-all">Ver Todos</a>
+            </div>
+            <div class="products-grid" id="jordanProducts"></div>
+        </div>
+    </section>
+
+    <!-- Adidas Section -->
+    <section class="adidas-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Adidas</h2>
+                <a href="#all-adidas" class="view-all">Ver Todos</a>
+            </div>
+            <div class="products-grid" id="adidasProducts"></div>
+        </div>
+    </section>
+
+    <!-- New Balance Section -->
+    <section class="new-balance-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>New Balance</h2>
+                <a href="#all-new-balance" class="view-all">Ver Todos</a>
+            </div>
+            <div class="products-grid" id="newBalanceProducts"></div>
+        </div>
+    </section>
+
+    <!-- Grifes Section 
+    <section class="grifes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Grifes</h2>
+                <a href="#all-grifes"></a>
+            </div>
+            <div class="products-grid" id="grifesProducts"></div>
+        </div>
+    </section>  -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-clock"></i> Segunda a Domingo das 8hrs as 22hrs</p>
+                    <p><i class="fas fa-phone"></i> (41) 995136233</p>
+                    <p><i class="fas fa-envelope"></i> Suporte@miquestyle.com</p>
+                    <div class="social-media">
+                        <a href="https://instagram.com/miquestyle" target="_blank" rel="noopener noreferrer" class="instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5562994853103" target="_blank" rel="noopener noreferrer" class="whatsapp-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Formas de Pagamento</h3>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fas fa-qrcode" title="PIX"></i>
+                        <img src="pix.png" alt="pix" class="pix-icon">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MIQUESTYLE | MIQUESTYLE ECOMMERCE LTDA </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <button class="close-menu">&times;</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Lançamentos</a></li>
+                    <li><a href="#nike">Nike</a></li>
+                    <li><a href="#adidas">Adidas</a></li>
+                    <li><a href="#new-balance">New Balance</a></li>
+                    <li><a href="#on-running">On Running</a></li>
+                    <li><a href="#asics">Asics</a></li>
+                    <li><a href="#collections">Todas coleções</a></li>
+                    <li><a href="#tracking">Rastreio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Carrinho de compras</h3>
+                <button class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Seu carrinho está vazio</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+                </div>
+                <button class="continue-shopping">Continuar comprando</button>
+                        <button class="checkout-whatsapp" id="checkoutWhatsApp">
+                    <i class="fab fa-whatsapp"></i> Finalizar no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-product-info">
+                <div class="modal-product-image">
+                    <img id="modalProductImage" src="" alt="">
+                </div>
+                <div class="modal-product-details">
+                    <h3 id="modalProductName"></h3>
+                    <p id="modalProductBrand"></p>
+                    <div class="modal-product-price">
+                        <span id="modalProductPrice"></span>
+                        <span id="modalProductOriginalPrice"></span>
+                    </div>
+                    <div class="modal-product-installments">
+                        <span id="modalProductInstallments"></span>
+                    </div>
+                    <div class="modal-product-actions">
+                        <button class="add-to-cart-modal" id="addToCartModal">Adicionar ao Carrinho</button>
+                        <button class="buy-now-whatsapp" id="buyNowWhatsApp">
+                            <i class="fab fa-whatsapp"></i> Comprar Agora
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="product-modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeAuthModal">&times;</button>
+            <div class="modal-product-info" style="grid-template-columns: 1fr;">
+                <div class="modal-product-details">
+                    <h3 id="authTitle">Entrar</h3>
+                    <form id="loginForm">
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <input type="email" id="loginEmail" placeholder="Email" required style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+                            <div class="password-input-wrapper">
+                                <input type="password" id="loginPassword" placeholder="Senha" required style="padding:12px;border:1px solid #ddd;border-radius:8px; width:100%;">
+                                <button type="button" class="toggle-password" data-target="loginPassword" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#666;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="loginError" style="display:none;color:#dc3545;font-size:14px;"></div>
+                            <a href="#" id="forgotPasswordLink" style="text-align:right; font-size:14px; color:#666; text-decoration:none; margin-top:-5px;">Esqueci minha senha</a>
+                            <button type="submit" class="add-to-cart-modal">Entrar</button>
+                        </div>
+                    </form>
+                    <hr style="margin:20px 0; border:none; border-top:1px solid #eee;">
+                    <h3>Criar conta</h3>
+                    <form id="registerForm">
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <input type="text" id="regName" placeholder="Nome completo" required style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+                            <input type="email" id="regEmail" placeholder="Email" required style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+                            <div class="password-input-wrapper">
+                                <input type="password" id="regPassword" placeholder="Senha" required style="padding:12px;border:1px solid #ddd;border-radius:8px; width:100%;">
+                                <button type="button" class="toggle-password" data-target="regPassword" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#666;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="registerError" style="display:none;color:#dc3545;font-size:14px;"></div>
+                            <button type="submit" class="buy-now-whatsapp">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="product-modal" id="profileModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeProfileModal">&times;</button>
+            <div class="modal-product-info" style="grid-template-columns: 1fr;">
+                <div class="modal-product-details">
+                    <h3>Meu perfil</h3>
+                    <p><strong>Nome:</strong> <span id="profName">-</span></p>
+                    <p><strong>Email:</strong> <span id="profEmail">-</span></p>
+                    <div style="margin-top:20px; display:flex; gap:10px;">
+                        <button class="continue-shopping" id="logoutBtn">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="product-modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeForgotPasswordModal">&times;</button>
+            <div class="modal-product-info" style="grid-template-columns: 1fr;">
+                <div class="modal-product-details">
+                    <h3>Esqueci minha senha</h3>
+                    <p style="color:#666; margin-bottom:20px;">Digite seu email e você receberá um link para redefinir sua senha.</p>
+                    <form id="forgotPasswordForm">
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <input type="email" id="forgotPasswordEmail" placeholder="Email" required style="padding:12px;border:1px solid #ddd;border-radius:8px;">
+                            <div id="forgotPasswordError" style="display:none;color:#dc3545;font-size:14px;"></div>
+                            <div id="forgotPasswordSuccess" style="display:none;color:#28a745;font-size:14px;"></div>
+                            <button type="submit" class="add-to-cart-modal">Enviar link</button>
+                            <a href="#" id="backToLoginLink" style="text-align:center; font-size:14px; color:#666; text-decoration:none;">Voltar para login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Password Modal -->
+    <div class="product-modal" id="resetPasswordModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeResetPasswordModal">&times;</button>
+            <div class="modal-product-info" style="grid-template-columns: 1fr;">
+                <div class="modal-product-details">
+                    <h3>Redefinir senha</h3>
+                    <p style="color:#666; margin-bottom:20px;">Digite sua nova senha.</p>
+                    <form id="resetPasswordForm">
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <div class="password-input-wrapper">
+                                <input type="password" id="newPassword" placeholder="Nova senha" required minlength="6" style="padding:12px;border:1px solid #ddd;border-radius:8px; width:100%;">
+                                <button type="button" class="toggle-password" data-target="newPassword" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#666;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="confirmPassword" placeholder="Confirmar nova senha" required minlength="6" style="padding:12px;border:1px solid #ddd;border-radius:8px; width:100%;">
+                                <button type="button" class="toggle-password" data-target="confirmPassword" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#666;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="resetPasswordError" style="display:none;color:#dc3545;font-size:14px;"></div>
+                            <button type="submit" class="add-to-cart-modal">Redefinir senha</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
