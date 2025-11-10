@@ -1,5 +1,12 @@
 // Vercel serverless function - Roteador único para todas as rotas
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Carregar .env (Vercel injeta variáveis de ambiente automaticamente, mas dotenv ajuda em desenvolvimento)
 dotenv.config();
 
 import { initDb } from '../backend/src/db.js';
@@ -31,7 +38,8 @@ app.get('/health', async (_req, res) => {
       ok: true, 
       timestamp: new Date().toISOString(),
       environment: process.env.VERCEL ? 'production' : 'development',
-      database: 'PostgreSQL'
+      database: 'PostgreSQL',
+      databaseUrl: !!process.env.DATABASE_URL
     });
   } catch (error) {
     console.error('Health check error:', error);
