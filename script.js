@@ -338,13 +338,32 @@ function startTestimonialSlider() {
 let authClickHandlerAdded = false;
 
 function setupAuth() {
+    console.log('[AUTH] setupAuth chamado');
+    
     const closeAuth = document.getElementById('closeAuthModal');
-    if (closeAuth) closeAuth.addEventListener('click', () => closeAuthModal());
+    if (closeAuth) {
+        closeAuth.addEventListener('click', () => closeAuthModal());
+        console.log('[AUTH] closeAuth listener adicionado');
+    } else {
+        console.warn('[AUTH] closeAuthModal não encontrado');
+    }
 
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    if (loginForm) loginForm.addEventListener('submit', handleLogin);
-    if (registerForm) registerForm.addEventListener('submit', handleRegister);
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+        console.log('[AUTH] loginForm listener adicionado');
+    } else {
+        console.error('[AUTH] loginForm não encontrado!');
+    }
+    
+    if (registerForm) {
+        registerForm.addEventListener('submit', handleRegister);
+        console.log('[AUTH] registerForm listener adicionado');
+    } else {
+        console.error('[AUTH] registerForm não encontrado!');
+    }
 
     const closeProfile = document.getElementById('closeProfileModal');
     if (closeProfile) closeProfile.addEventListener('click', closeProfileModal);
@@ -677,10 +696,15 @@ function closeAuthModal() {
 }
 
 async function handleLogin(e) {
+    console.log('[AUTH] handleLogin chamado');
     e.preventDefault();
+    
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
     const errBox = document.getElementById('loginError');
+    
+    console.log('[AUTH] Tentando fazer login para:', email);
+    console.log('[AUTH] API_BASE:', API_BASE);
     
     if (errBox) {
         errBox.style.display = 'none';
