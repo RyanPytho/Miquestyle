@@ -1,32 +1,21 @@
-// Vercel serverless function - Wrapper para o backend
-import express from 'express';
-import cors from 'cors';
+// Vercel serverless function - Roteador único para todas as rotas
 import dotenv from 'dotenv';
 import { initDb } from '../backend/src/db.js';
 import { register, login, me, authMiddleware, forgotPassword, resetPassword } from '../backend/src/auth.js';
 
 dotenv.config();
 
+// Criar app Express mínimo
+import express from 'express';
 const app = express();
-const ORIGIN = process.env.ORIGIN || '*';
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
-
 app.set('JWT_SECRET', JWT_SECRET);
-app.use(cors({ origin: ORIGIN === '*' ? true : ORIGIN, credentials: false }));
 app.use(express.json());
 
-// Logging middleware para debug
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
-  next();
-});
-
-app.use(authMiddleware);
-
-// Healthcheck melhorado
+// Healthcheck
 app.get('/health', async (_req, res) => {
   try {
-    await initDb(); // Garantir que o banco está inicializado
+    await initDb();
     res.json({ 
       ok: true, 
       timestamp: new Date().toISOString(),
@@ -46,7 +35,7 @@ app.get('/auth/me', me);
 app.post('/auth/forgot-password', forgotPassword);
 app.post('/auth/reset-password', resetPassword);
 
-// Inicializar banco na inicialização (async)
+// Inicializar banco
 let dbInitialized = false;
 (async () => {
   try {
@@ -58,17 +47,27 @@ let dbInitialized = false;
   }
 })();
 
-// Handler para Vercel - precisa ser uma função que recebe req e res
-export default function handler(req, res) {
+// Handler para Vercel
+export default async function handler(req, res) {
   // Garantir que o banco está inicializado
   if (!dbInitialized) {
-    initDb().then(() => {
+    try {
+      await initDb();
       dbInitialized = true;
-    }).catch(err => {
-      console.error('Database initialization error:', err);
-    });
+    } catch (error) {
+      console.error('Database initialization error:', error);
+    }
   }
   
-  // Passar a requisição para o Express
+  // Aplicar CORS manualmente
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  // Passar para o Express
   return app(req, res);
 }
