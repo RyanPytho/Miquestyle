@@ -66,7 +66,10 @@ const API_BASE = location.hostname === 'localhost' || location.hostname === '127
     : `${location.origin}/api`;
 
 // Inicialização quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
+    console.log('[INIT] Inicializando aplicação...');
+    console.log('[INIT] API_BASE:', API_BASE);
+    
     initializeEventListeners();
     loadProducts();
     loadCartFromStorage();
@@ -75,7 +78,17 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAuth();
     updateAuthState();
     setupPasswordToggle();
-});
+    
+    console.log('[INIT] Inicialização completa');
+}
+
+// Aguardar DOM carregar
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    // DOM já carregado
+    init();
+}
 
 function initializeEventListeners() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
