@@ -96,13 +96,11 @@ body {
 /* ===== LOGO ===== */
 .logo {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+    margin-left: 45%;
 }
 
 .site-logo {
-    height: 80px;
+    height: 100px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -1096,15 +1094,6 @@ body {
         padding: 0;
     }
     
-    .logo {
-        flex: 0 0 auto;
-        margin-left: 0;
-    }
-    
-    .site-logo {
-        height: 60px;
-    }
-    
     .mobile-menu-btn {
         display: flex;
     }
@@ -1375,10 +1364,6 @@ body {
     .header-content {
         gap: 8px;
         padding: 0;
-    }
-    
-    .site-logo {
-        height: 50px;
     }
     
     .cart-btn {
