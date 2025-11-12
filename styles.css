@@ -179,7 +179,7 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 15px;
-    padding: 10px 100px;
+    padding: 10px 20px;
 }
 
 .header-actions button {
