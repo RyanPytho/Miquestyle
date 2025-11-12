@@ -23,7 +23,7 @@ body {
 .promo-banner {
     background: #000;
     color: #fff;
-    padding: 0px 100px;
+    padding: 8px 20px;
     overflow: hidden;
     position: relative;
 }
@@ -63,16 +63,16 @@ body {
 }
 
 .header-main {
-    padding: 15px 0px;
+    padding: 15px 20px;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     max-width: 100%;
-    
+    padding: 0 10px;
 }
 
 .mobile-menu-btn {
@@ -95,21 +95,23 @@ body {
 
 /* ===== LOGO ===== */
 .logo {
-      display: flex; 
-      margin-left: 45%;
-     }
-        
-         .site-logo {
-          height: 100px;        /* tamanho ideal */
-          width: auto;
-          object-fit: contain;
-          display: block;
-          transition: transform 0.3s ease;
-    }
-        
-        .site-logo:hover {
-          transform: scale(1.05);
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.site-logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+}
         
 
 .nav-list {
@@ -248,7 +250,8 @@ body {
 .hero-slide {
     display: flex;
     align-items: center;
-    margin-left: 100px;
+    margin-left: 0;
+    padding: 0 20px;
 }
 
 .hero-content {
@@ -311,7 +314,7 @@ body {
 .adidas-section,
 .new-balance-section,
 .grifes-section {
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 .nike-section,
@@ -1079,6 +1082,29 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .promo-banner {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+    
+    .header-main {
+        padding: 12px 15px;
+    }
+    
+    .header-content {
+        gap: 10px;
+        padding: 0;
+    }
+    
+    .logo {
+        flex: 0 0 auto;
+        margin-left: 0;
+    }
+    
+    .site-logo {
+        height: 60px;
+    }
+    
     .mobile-menu-btn {
         display: flex;
     }
@@ -1088,40 +1114,113 @@ body {
     }
     
     .header-actions {
-        gap: 15px;
+        gap: 10px;
+    }
+    
+    .cart-btn {
+        font-size: 18px;
+        padding: 8px;
+    }
+    
+    .auth-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .hero {
+        padding: 40px 0;
     }
     
     .hero-slide {
         flex-direction: column;
         text-align: center;
+        padding: 0 15px;
+        margin-left: 0;
     }
     
     .hero-content {
         padding-right: 0;
         margin-bottom: 30px;
+        width: 100%;
     }
     
     .hero-content h2 {
-        font-size: 36px;
+        font-size: 32px;
+        line-height: 1.2;
     }
     
     .hero-content h3 {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .hero-content p {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .cta-btn {
+        padding: 12px 24px;
         font-size: 16px;
+    }
+    
+    .hero-image {
+        width: 100%;
+    }
+    
+    .hero-image img {
+        max-width: 100%;
+    }
+    
+    .nike-section,
+    .jordan-section,
+    .adidas-section,
+    .new-balance-section,
+    .grifes-section {
+        padding: 40px 0;
+    }
+    
+    .container {
+        padding: 0 15px;
     }
     
     .section-header {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-subtitle {
+        font-size: 14px;
     }
     
     .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
+    }
+    
+    .product-card {
+        border-radius: 12px;
+    }
+    
+    .product-image img {
+        height: 220px;
+    }
+    
+    .product-info h3 {
+        font-size: 16px;
+    }
+    
+    .product-price {
+        font-size: 20px;
+    }
+    
+    .product-installments {
+        font-size: 12px;
     }
     
     .features-grid {
@@ -1129,14 +1228,36 @@ body {
         gap: 20px;
     }
     
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-section h3 {
+        font-size: 18px;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+        font-size: 14px;
     }
     
     .cart-sidebar {
         width: 100%;
         right: -100%;
+    }
+    
+    .cart-header {
+        padding: 15px;
+    }
+    
+    .cart-items {
+        padding: 15px;
     }
     
     .cart-item-image-container {
@@ -1149,6 +1270,43 @@ body {
     .cart-item-image {
         max-width: 62px;
         max-height: 62px;
+    }
+    
+    .cart-item-info h4 {
+        font-size: 14px;
+    }
+    
+    .cart-item-price {
+        font-size: 16px;
+    }
+    
+    .cart-item-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .quantity-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .remove-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .cart-footer {
+        padding: 15px;
+    }
+    
+    .cart-total {
+        font-size: 20px;
+    }
+    
+    .checkout-btn {
+        padding: 12px;
+        font-size: 16px;
     }
     
     .modal-product-info {
@@ -1169,37 +1327,128 @@ body {
     .modal-content {
         max-width: 95%;
         padding: 20px;
+        max-height: 95vh;
+    }
+    
+    .modal-product-info h2 {
+        font-size: 24px;
+    }
+    
+    .modal-product-price {
+        font-size: 28px;
+    }
+    
+    .modal-product-installments {
+        font-size: 14px;
+    }
+    
+    .modal-product-description {
+        font-size: 14px;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
+    .promo-banner {
+        padding: 5px 10px;
+        font-size: 11px;
     }
     
-    .logo-container {
-        width: 60px;
-        height: 60px;
+    .promo-item {
+        font-size: 11px;
     }
     
-    .logo-container .crown {
+    .header-main {
+        padding: 10px 10px;
+    }
+    
+    .header-content {
+        gap: 8px;
+        padding: 0;
+    }
+    
+    .site-logo {
+        height: 50px;
+    }
+    
+    .cart-btn {
         font-size: 16px;
+        padding: 6px;
     }
     
-    .logo h1 {
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        top: -6px;
+        right: -6px;
+    }
+    
+    .auth-btn {
+        padding: 6px 10px;
         font-size: 12px;
     }
     
+    .hero {
+        padding: 30px 0;
+    }
+    
+    .hero-slide {
+        padding: 0 10px;
+    }
+    
     .hero-content h2 {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 8px;
     }
     
     .hero-content h3 {
-        font-size: 18px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .nike-section,
+    .jordan-section,
+    .adidas-section,
+    .new-balance-section,
+    .grifes-section {
+        padding: 30px 0;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    .section-header {
+        margin-bottom: 25px;
     }
     
     .section-header h2 {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    .section-subtitle {
+        font-size: 13px;
     }
     
     .products-grid {
@@ -1207,22 +1456,79 @@ body {
         gap: 15px;
     }
     
+    .product-card {
+        border-radius: 10px;
+    }
+    
     .product-image img {
         height: 200px;
     }
     
-    .modal-product-image {
-        min-height: 250px;
-        max-height: 300px;
-        padding: 10px;
+    .product-info {
+        padding: 12px;
     }
     
-    .modal-product-image img {
-        max-height: 280px;
+    .product-info h3 {
+        font-size: 15px;
+        margin-bottom: 8px;
     }
     
-    .modal-content {
-        padding: 15px;
+    .product-brand {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .product-price {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    
+    .product-installments {
+        font-size: 11px;
+    }
+    
+    .footer {
+        padding: 30px 0 15px;
+    }
+    
+    .footer-content {
+        gap: 25px;
+    }
+    
+    .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+        font-size: 13px;
+    }
+    
+    .social-media {
+        gap: 15px;
+    }
+    
+    .social-media a {
+        font-size: 20px;
+    }
+    
+    .payment-methods {
+        gap: 10px;
+    }
+    
+    .payment-methods img {
+        height: 25px;
+    }
+    
+    .cart-header h2 {
+        font-size: 18px;
+    }
+    
+    .cart-item {
+        gap: 10px;
+        padding: 12px 0;
+        flex-wrap: wrap;
     }
     
     .cart-item-image-container {
@@ -1237,9 +1543,138 @@ body {
         max-height: 54px;
     }
     
-    .cart-item {
-        gap: 10px;
-        padding: 12px 0;
+    .cart-item-info {
+        flex: 1;
+        min-width: 0;
     }
     
+    .cart-item-info h4 {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    
+    .cart-item-brand {
+        font-size: 12px;
+    }
+    
+    .cart-item-price {
+        font-size: 15px;
+    }
+    
+    .cart-item-controls {
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    .quantity-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+    
+    .quantity {
+        font-size: 14px;
+        min-width: 30px;
+    }
+    
+    .remove-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .cart-total {
+        font-size: 18px;
+    }
+    
+    .checkout-btn {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .modal-content {
+        padding: 15px;
+        max-width: 98%;
+        max-height: 98vh;
+    }
+    
+    .modal-product-image {
+        min-height: 250px;
+        max-height: 300px;
+        padding: 10px;
+    }
+    
+    .modal-product-image img {
+        max-height: 280px;
+    }
+    
+    .modal-product-info h2 {
+        font-size: 20px;
+    }
+    
+    .modal-product-brand {
+        font-size: 13px;
+    }
+    
+    .modal-product-price {
+        font-size: 24px;
+    }
+    
+    .modal-product-installments {
+        font-size: 13px;
+    }
+    
+    .modal-product-description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .modal-actions {
+        gap: 8px;
+    }
+    
+    .modal-btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    /* Auth Modal */
+    .auth-modal-content {
+        padding: 20px 15px;
+        max-width: 95%;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    
+    .auth-tabs {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .auth-tab {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .auth-form input {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .auth-form button {
+        padding: 12px;
+        font-size: 15px;
+    }
+    
+    .password-input-wrapper {
+        margin-bottom: 15px;
+    }
+    
+    /* Notification */
+    .notification {
+        right: 10px;
+        bottom: 10px;
+        padding: 12px 16px;
+        font-size: 13px;
+        max-width: calc(100% - 20px);
+    }
 }
