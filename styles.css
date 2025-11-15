@@ -11,6 +11,7 @@ body {
     color: #333;
     background-color: #fff;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -1166,10 +1167,12 @@ body {
     .new-balance-section,
     .grifes-section {
         padding: 40px 0;
+        overflow-x: hidden;
     }
     
     .container {
         padding: 0 15px;
+        overflow-x: hidden;
     }
     
     .section-header {
@@ -1188,12 +1191,35 @@ body {
     }
     
     .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 20px;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+    }
+    
+    .products-grid::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .products-grid::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .products-grid::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
     }
     
     .product-card {
+        flex: 0 0 280px;
+        min-width: 280px;
         border-radius: 12px;
+        scroll-snap-align: start;
     }
     
     .product-image img {
@@ -1418,10 +1444,12 @@ body {
     .new-balance-section,
     .grifes-section {
         padding: 30px 0;
+        overflow-x: hidden;
     }
     
     .container {
         padding: 0 10px;
+        overflow-x: hidden;
     }
     
     .section-header {
@@ -1437,12 +1465,35 @@ body {
     }
     
     .products-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 15px;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+    }
+    
+    .products-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .products-grid::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .products-grid::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 2px;
     }
     
     .product-card {
+        flex: 0 0 250px;
+        min-width: 250px;
         border-radius: 10px;
+        scroll-snap-align: start;
     }
     
     .product-image img {
